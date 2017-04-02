@@ -21,7 +21,7 @@ def hello():
 	if response == 0:
 	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Up'))
 	else:
-	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Down ครับ'))	
+	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Down'))	
 
     	return "OK!"
 
