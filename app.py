@@ -21,9 +21,9 @@ def hello():
 	response = os.system("ping " + hostname)
 	#and then check the response...
 	if response == 0:
-	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Up'))
+	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Up เข้าถึงได้'))
 	else:
-	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Down ลองดู'))	
+	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Down ไม่สามารถเข้าถึงได้'))	
 
     	return "OK!"
 
