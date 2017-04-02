@@ -15,6 +15,7 @@ def hello():
 	
 	line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text='Hello World!'))
 	except LineBotApiError as e:
+		pass
     	return "OK!"
 
 @app.route('/callback', methods=['POST'])
