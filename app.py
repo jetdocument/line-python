@@ -15,7 +15,7 @@ def hello():
 	
 	line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text='From line bot Python'))
 
-    	return "OK!"
+    	return line_bot_api
 
 @app.route('/callback', methods=['POST'])
 def callback():
