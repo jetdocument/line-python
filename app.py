@@ -23,7 +23,7 @@ def hello():
 	else:
 	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Down'))	
 
-    	return print(line_bot_api)
+    	return "OK!"
 
 @app.route('/callback', methods=['POST'])
 def callback():
