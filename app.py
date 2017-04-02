@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "READY!"
+    return "OK!"
 
 @app.route('/callback', methods=['POST'])
 def callback():
