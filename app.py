@@ -1,13 +1,21 @@
-import requests,json
-from urlparse import urlparse
-import urllib
+from flask import Flask
+from flask import request
+import json
+import requests
 
-LINE_ACCESS_TOKEN="dNgrSoWFrJmMwMlYuV3kH1ZwpwstHqaYCsX4fOz4Yx1"
-url = "https://notify-api.line.me/api/notify"
+from linebot import LineBotApi
+from linebot.models import TextSendMessage
+from linebot.exceptions import LineBotApiError
 
-message ="ทดสอบ สวัสดีชาวโลก" # ข้อความที่ต้องการส่ง
-msg = urllib.urlencode(({"message":message}))
-LINE_HEADERS = {'Content-Type':'application/x-www-form-urlencoded',"Authorization":"Bearer "+LINE_ACCESS_TOKEN}
-session = requests.Session()
-a=session.post(url, headers=LINE_HEADERS, data=msg)
-print(a.text)
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "OK!"
+
+@app.route('/callback', methods=['POST'])
+def callback():
+	return '',200
+
+if __name__ == "__main__":
+    app.run()
