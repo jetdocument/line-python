@@ -13,7 +13,7 @@ app = Flask(__name__)
 def hello():
 	line_bot_api = LineBotApi('wX48QUgber5AbF+6JcsrmtphuO807pZCWAjHYTEn2fnQTnbzfsxGB3bwC26Rs6fhCiyC1NFgR3ALswB00VLpTiA77FOsuWBZONuOUa++A2tVECw5fEVumyyTOYK212GhSYdkUNJZ8SREwcG45HKnIgdB04t89/1O/w1cDnyilFU=')
 	# try:
-	    # line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text='Hello World!'))
+	line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text='Hello World!'))
 	# except LineBotApiError as e:
     	return "OK!"
 
