@@ -18,10 +18,10 @@ def hello():
 	hostname = "google.com" #example
 	response = os.system("ping " + hostname)
 	#and then check the response...
-	if response == 0:
-	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Up'))
+	if response == 1:
+	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Up'+'เปิดอยู่'))
 	else:
-	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Down'))	
+	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Down'+'ปิดอยู่'))	
 
     	return "OK!"
 
