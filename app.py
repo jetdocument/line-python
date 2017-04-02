@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, requesst
 import json
 import requests
 
@@ -6,13 +6,11 @@ from linebot import LineBotApi
 from linebot.models import TextSendMessage
 from linebot.exceptions import LineBotApiError
 
-
-
 app = Flask(__name__)
 
 @app.route("/")
 def hello():
-	return "OK!"
+    return "OK!"
 
 @app.route('/callback', methods=['POST'])
 def callback():
