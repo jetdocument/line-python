@@ -1,35 +1,41 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
-from flask import request
-import json
-import requests
+from flask import Flask, request, abort
 
-from linebot import LineBotApi
-from linebot.models import TextSendMessage
-from linebot.exceptions import LineBotApiError
-
-import os
+from linebot import ( LineBotApi, WebhookHandler ) 
+from linebot.exceptions import ( InvalidSignatureError )
+from linebot.models import ( MessageEvent, TextMessage, TextSendMessage, )
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello():
-	line_bot_api = LineBotApi('wX48QUgber5AbF+6JcsrmtphuO807pZCWAjHYTEn2fnQTnbzfsxGB3bwC26Rs6fhCiyC1NFgR3ALswB00VLpTiA77FOsuWBZONuOUa++A2tVECw5fEVumyyTOYK212GhSYdkUNJZ8SREwcG45HKnIgdB04t89/1O/w1cDnyilFU=')
-	
-	hostname = "google.com" #example
-	response = os.system("ping " + hostname)
-	#and then check the response...
-	if response == 0:
-	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Up เข้าถึงได้'))
-	else:
-	  line_bot_api.push_message('Ua19821cd93141008d26221f16381d256', TextSendMessage(text=hostname+' : '+'Link\'s Down ไม่สามารถเข้าถึงได้'))	
+line_bot_api = LineBotApi('wX48QUgber5AbF+6JcsrmtphuO807pZCWAjHYTEn2fnQTnbzfsxGB3bwC26Rs6fhCiyC1NFgR3ALswB00VLpTiA77FOsuWBZONuOUa++A2tVECw5fEVumyyTOYK212GhSYdkUNJZ8SREwcG45HKnIgdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('51d99670e2bb8acd7433e7bf75fb5416')
 
-    	return "OK!"
 
-@app.route('/callback', methods=['POST'])
+@app.route("/callback", methods=['POST'])
 def callback():
-	return '',200
+    # get X-Line-Signature header value
+    signature = request.headers['X-Line-Signature']
+
+    # get request body as text
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
+
+    # handle webhook body
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        abort(400)
+
+    return 'OK'
+
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text))
+
 
 if __name__ == "__main__":
     app.run()
