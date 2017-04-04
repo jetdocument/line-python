@@ -18,7 +18,7 @@ handler = WebhookHandler(Channel_Secret)
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
-    signature = request.headers['X-Line-Signature']
+    signature = request.headers['https://polar-fortress-24014.herokuapp.com/']
 
     # get request body as text
     body = request.get_data(as_text=True)
