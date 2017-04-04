@@ -14,11 +14,14 @@ userId = 'Ua19821cd93141008d26221f16381d256'
 line_bot_api = LineBotApi(Channel_Access_Token)
 handler = WebhookHandler(Channel_Secret)
 
+@app.route('/')
+def index():
+    return "OK!"
 
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
-    signature = request.headers['https://polar-fortress-24014.herokuapp.com/']
+    signature = request.headers['X-Line-Signature']
 
     # get request body as text
     body = request.get_data(as_text=True)
